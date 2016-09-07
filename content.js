@@ -3,7 +3,7 @@
 
 function onevent(selector, signature, callback) {
     var array = document.querySelectorAll(selector);
-    if (obj) {
+    if (array) {
         for (var index = 0; index < array.length; index++) {
             var element = array[index];
             element.addEventListener(signature, callback);
@@ -17,23 +17,51 @@ onevent('a', 'mouseover', function (event) {
 var currentUrlElement = undefined;
 
 document.addEventListener('keydown', function (event) {
-    console.log(event)
+   console.log(event)
     if (event.shiftKey) {
-        if (event.keyCode === 81)//1
+        if (event.keyCode === 81)//q
         {
             if (currentUrlElement !== undefined) {
                 Clipboard.copy(currentUrlElement.textContent.trim());
                 return false;
             }
-        } else if (event.keyCode === 87) {
+        } else if (event.keyCode === 87) {//w
             if (currentUrlElement !== undefined) {
                 Clipboard.copy(currentUrlElement.href.trim());
                 return false;
+            }
+        }else if(event.keyCode===65){ //a
+            copyCourse();
+        }else if(event.keyCode===90){ //z
+            var img=document.querySelector('#banner-thumbnail img');
+            if(img){
+                var url=img.getAttribute('src');
+                downloadFileFromText(url)
             }
         }
     }
 })
 
+
+/**
+ * 
+ */
+
+function copyCourse(){
+    var obj=document.querySelector('#toc-content .course-toc');
+    console.log(obj)
+    if(obj)
+    Clipboard.copy(obj.outerHTML);
+}
+
+function downloadFileFromText(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click(); //this is probably the key - simulating a click on a download link
+    delete a;// we don't need this anymore
+}
 
 
 // Clipboard
