@@ -36,7 +36,9 @@ document.addEventListener('keydown', function (event) {
             var img=document.querySelector('#banner-thumbnail img');
             if(img){
                 var url=img.getAttribute('src');
-                downloadFileFromText(url)
+                window.open(url, '_blank')
+                // chrome.tabs.create({ url:  url });
+               // downloadFileFromText(url)
             }
         }
     }
