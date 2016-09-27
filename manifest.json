@@ -1,12 +1,21 @@
 {
   "manifest_version": 2,
-  "name": "Double right click to copy",
-  "description": "Adds \"double right click to copy URL\" functionality to all web pages",
-  "version": "0.5",
+  "name": "Cleaner",
+  "version": "0.1",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/icon128.png",
+    "default_popup": "popup.html",
+    "default_title": "Cleaner"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
   },
   "content_scripts": [
     {
@@ -19,6 +28,9 @@
     }
   ],
   "permissions": [
-    "clipboardWrite"
+    "clipboardWrite",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
   ]
 }
